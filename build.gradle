@@ -34,6 +34,16 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	runtimeOnly 'org.flywaydb:flyway-core'
 	runtimeOnly 'org.springframework:spring-jdbc'
+	implementation 'org.springframework.cloud:spring-cloud-stream-binder-rabbit'
+	testImplementation("org.springframework.cloud:spring-cloud-stream") {
+		artifact {
+			name = "spring-cloud-stream"
+			extension = "jar"
+			type ="test-jar"
+			classifier = "test-binder"
+		}
+	}
+
 }
 
 dependencyManagement {
