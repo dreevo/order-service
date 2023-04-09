@@ -16,6 +16,7 @@ ext {
 	set('springCloudVersion', "2021.0.3")
 	set('testcontainersVersion', "1.17.6")
 	set('testKeycloakVersion', "2.3.0")
+	set('otelVersion', "1.17.0")
 }
 
 dependencies {
@@ -24,6 +25,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	implementation 'org.springframework.cloud:spring-cloud-starter-config'
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.cloud:spring-cloud-stream-binder-rabbit'
 	runtimeOnly 'org.postgresql:postgresql'
 	runtimeOnly 'org.postgresql:r2dbc-postgresql'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -32,11 +35,6 @@ dependencies {
 	testImplementation 'org.testcontainers:postgresql'
 	testImplementation 'org.testcontainers:r2dbc'
 	testImplementation 'com.squareup.okhttp3:mockwebserver'
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
-	runtimeOnly 'org.flywaydb:flyway-core'
-	runtimeOnly 'org.springframework:spring-jdbc'
-	implementation 'org.springframework.cloud:spring-cloud-stream-binder-rabbit'
 	testImplementation("org.springframework.cloud:spring-cloud-stream") {
 		artifact {
 			name = "spring-cloud-stream"
@@ -48,7 +46,12 @@ dependencies {
 	testImplementation 'org.springframework.security:spring-security-test'
 	testImplementation 'org.testcontainers:junit-jupiter'
 	testImplementation "com.github.dasniko:testcontainers-keycloak:${testKeycloakVersion}"
-
+	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'org.flywaydb:flyway-core'
+	runtimeOnly 'org.springframework:spring-jdbc'
+	runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
+	runtimeOnly "io.opentelemetry.javaagent:opentelemetry-javaagent:${otelVersion}"
+	annotationProcessor 'org.projectlombok:lombok'
 }
 
 dependencyManagement {
